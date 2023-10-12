@@ -13,10 +13,4 @@ public class TestController {
     @GetMapping("/get")
     public String testMethod(){
         return "Hello Kavinga Sir";
-    }
-
-    @PostMapping("/post")
-    public String testPostMethod(@RequestBody UserDTO userDTO){
-        return userService.addUser(userDTO);
-    }
-}
+    }}
