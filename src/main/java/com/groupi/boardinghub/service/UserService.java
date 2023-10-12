@@ -22,14 +22,7 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public String addUser(UserDTO userDto){
-        User user=new User(" ",userDto.getFirstName(),
-                userDto.getLastName(),
-                userDto.getEmail(),
-                userDto.getPassword());
-        userRepository.save(user);
-        return "Successfully Saved";
-    }
+
 
 
 
