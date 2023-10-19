@@ -2,17 +2,18 @@ package com.groupi.boardinghub.model;
 
 import com.groupi.boardinghub.model.enums.ServiceProviderType;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Data
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(
-        name = "SERVICE_PROVIDER_TYPE",
-        discriminatorType = DiscriminatorType.STRING
-)
-public abstract class ServiceProvider {
+public class ServiceProvider {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2",strategy="uuid2")
@@ -31,8 +32,11 @@ public abstract class ServiceProvider {
     @Column(name = "phone")
     private String phone;
 
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "service_provider_type")
-//    private ServiceProviderType serviceProviderType;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Location location;
+
+    @Column(name = "service_provider_type")
+    @Enumerated(EnumType.STRING)
+    private ServiceProviderType serviceProviderType;
 
 }
