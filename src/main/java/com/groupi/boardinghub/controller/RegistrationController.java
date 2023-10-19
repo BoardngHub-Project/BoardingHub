@@ -25,6 +25,8 @@ public class RegistrationController {
     public ResponseEntity<String> createAccount(@RequestBody UserDTO userDto){
 
         //check weather email is valid or not
+
+
         //if()
 
         //checking the email is already exists
