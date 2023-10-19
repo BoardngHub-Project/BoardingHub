@@ -6,6 +6,7 @@ import com.groupi.boardinghub.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +18,16 @@ public class RegistrationController {
     @Autowired
     private  UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @PostMapping("/account")
     public ResponseEntity<String> createAccount(@RequestBody UserDTO userDto){
 
         //check weather email is valid or not
-       // if()
+
+
+        //if()
 
         //checking the email is already exists
         if(userRepository.existsByEmail(userDto.getEmail())){
@@ -37,10 +43,12 @@ public class RegistrationController {
 
 
         //mapping the UserDto input into User entity
-        User user=new User(" ",userDto.getFirstName(),
-                userDto.getLastName(),
-                userDto.getEmail(),
-                userDto.getPassword());
+        User user=new User();
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+
 
         // save the data into db
         userRepository.save(user);
