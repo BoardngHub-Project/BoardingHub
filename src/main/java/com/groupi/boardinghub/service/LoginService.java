@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class LoginService {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder; //BCryptPasswordEncoder
     public String logIn(@RequestBody LogInDTO loginDto){
 
         User user= UserService.findByEmail(loginDto.getEmail());
