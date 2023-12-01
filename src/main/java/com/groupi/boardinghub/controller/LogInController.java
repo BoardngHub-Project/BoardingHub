@@ -5,7 +5,7 @@ import com.groupi.boardinghub.dto.UserDTO;
 import com.groupi.boardinghub.model.User;
 import com.groupi.boardinghub.service.UserService;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/login")
 public class LogInController {
