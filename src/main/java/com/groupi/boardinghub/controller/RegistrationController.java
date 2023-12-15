@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/register")
@@ -56,5 +58,27 @@ public class RegistrationController {
         userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("User register successfully");
+    }
+
+    @PutMapping("/account/{email}")
+    public ResponseEntity<String> updateUser(@PathVariable String email, @RequestBody UserDTO updatedUserDto) {
+        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByEmail(email));
+
+        if (optionalUser.isPresent()) {
+            User existingUser = optionalUser.get();
+
+            // Update the fields you want to allow modify
+            existingUser.setFirstName(updatedUserDto.getFirstName());
+            existingUser.setLastName(updatedUserDto.getLastName());
+            existingUser.setEmail(updatedUserDto.getEmail());
+
+
+            userRepository.save(existingUser);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("User details updated successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("User not found");
+        }
     }
 }
