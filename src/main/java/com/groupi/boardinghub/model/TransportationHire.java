@@ -1,14 +1,15 @@
 package com.groupi.boardinghub.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,15 +19,15 @@ import org.hibernate.annotations.GenericGenerator;
 public class TransportationHire {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2",strategy="uuid2")
-        private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-        private String vehicleType;
-        private String driverName;
-        private String vehicleMake;
-        private double pricePerKm;
-        private String imageUrl;
+
+    private Long id;
+    private String vehicleType;
+    private String driverName;
+    private String vehicleMake;
+    private double pricePerKm;
+    private String imageUrl;
 
 }
 
