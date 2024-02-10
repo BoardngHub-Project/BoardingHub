@@ -12,7 +12,7 @@ public class ServiceProviderRegistrationMapper {
 
         String encodedPassword = encodePassword(serviceProviderRegistrationDto.getPassword());
 
-        Location location = mapDtoToLocationModel(serviceProviderRegistrationDto.getLocationDto());
+        Location location = mapDtoToLocationModel(serviceProviderRegistrationDto);
 
         return ServiceProvider.builder().username(serviceProviderRegistrationDto.getUsername())
                 .email(serviceProviderRegistrationDto.getEmail())
@@ -23,8 +23,8 @@ public class ServiceProviderRegistrationMapper {
                 .build();
     }
 
-    private static Location mapDtoToLocationModel(LocationDto locationDto) {
-        return Location.builder().latitude(locationDto.getLatitude()).longitude(locationDto.getLongitude()).build();
+    public static Location mapDtoToLocationModel(ServiceProviderRegistrationDto serviceProviderDto) {
+        return Location.builder().latitude(serviceProviderDto.getLatitude()).longitude(serviceProviderDto.getLongitude()).build();
     }
 
     public static ServiceProviderRegistrationDto mapModelToDto(ServiceProvider serviceProvider) {
@@ -36,12 +36,13 @@ public class ServiceProviderRegistrationMapper {
                 .email(serviceProvider.getEmail())
                 .password(serviceProvider.getPassword())
                 .phone(serviceProvider.getPhone())
-                .locationDto(locationDto)
+                .longitude(locationDto.getLongitude())
+                .latitude(locationDto.getLatitude())
                 .serviceProviderType(serviceProvider.getServiceProviderType())
                 .build();
     }
 
-    private static LocationDto mapToLocationDto(Location location) {
+    public static LocationDto mapToLocationDto(Location location) {
         return LocationDto.builder().longitude(location.getLongitude()).latitude(location.getLatitude()).build();
     }
 
