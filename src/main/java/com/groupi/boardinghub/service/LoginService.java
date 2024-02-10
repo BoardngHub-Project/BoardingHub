@@ -16,21 +16,28 @@ public class LoginService {
     public String logIn(@RequestBody LogInDTO loginDto){
 
         User user= UserService.findByEmail(loginDto.getEmail());
-        ServiceProvider serviceProvider=ServiceProviderRegistrationService.getServiceProviderbyEmail(loginDto.getEmail());
-        if(user==null || serviceProvider==null){
+        //ServiceProvider serviceProvider=ServiceProviderRegistrationService.getServiceProviderbyEmail(loginDto.getEmail());
+        if(user==null){
             return "Account not found";
-        }else if(passwordEncoder.matches(loginDto.getPassword(),user.getPassword()) || passwordEncoder.matches(loginDto.getPassword(),serviceProvider.getPassword())) {
-            if(user== null && serviceProvider.getServiceProviderType()== ServiceProviderType.BOARDING_PLACE) {
-                return "BoardingPlaceProvider Logged in Successfully!...";
-            }else if(user== null && serviceProvider.getServiceProviderType()== ServiceProviderType.MEAL_PROVIDER) {
-                return "MealProvider Logged in Successfully!...";
-            }else if(user== null && serviceProvider.getServiceProviderType()== ServiceProviderType.TRANSPORT_PROVIDER){
-                return "TransportProvider Logged in Successfully!...";
-            }else{
-                return "PartTimeJopProvider Logged in Successfully!...";
-            }
+        }else if(passwordEncoder.matches(loginDto.getPassword(),user.getPassword())) {
+            return "Logged in Successfully!...";
         }else{
             return "Incorrect Credentials...";
         }
     }
 }
+
+ //&& serviceProvider.getServiceProviderType()== ServiceProviderType.BOARDING_PLACE
+// && serviceProvider.getServiceProviderType()== ServiceProviderType.MEAL_PROVIDER
+// && serviceProvider.getServiceProviderType()== ServiceProviderType.TRANSPORT_PROVIDER
+//if(user== null) {
+//        return "BoardingPlaceProvider Logged in Successfully!...";
+//        }else if(user== null) {
+//        return "MealProvider Logged in Successfully!...";
+//        }else if(user== null){
+//        return "TransportProvider Logged in Successfully!...";
+//        }else{
+//        return "PartTimeJopProvider Logged in Successfully!...";
+//        }
+
+// || passwordEncoder.matches(loginDto.getPassword(),serviceProvider.getPassword())

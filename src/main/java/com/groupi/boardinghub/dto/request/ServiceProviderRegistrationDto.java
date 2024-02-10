@@ -14,6 +14,8 @@ public class ServiceProviderRegistrationDto {
     private String password;
     private String email;
     private String phone;
-    private LocationDto locationDto;
+    //private LocationDto locationDto;
+    private String longitude;
+    private String latitude;
     private ServiceProviderType serviceProviderType;
 }
