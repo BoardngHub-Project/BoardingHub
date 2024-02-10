@@ -13,7 +13,7 @@ import java.util.Optional;
 public class ServiceProviderRegistrationService {
 
     @Autowired
-    private ServiceProviderRepository serviceProviderRepository;
+    private static ServiceProviderRepository serviceProviderRepository;
 
     public ServiceProviderRegistrationDto addServiceProvider(ServiceProviderRegistrationDto serviceProviderRegistrationDto) {
 
@@ -33,6 +33,12 @@ public class ServiceProviderRegistrationService {
             return getServiceProviderDto;
         }
         return null;
+    }
+
+    public static ServiceProvider getServiceProviderbyEmail(String email){
+        ServiceProvider serviceProvider = serviceProviderRepository.findByEmail(email);
+        return serviceProvider;
+
     }
 
 }

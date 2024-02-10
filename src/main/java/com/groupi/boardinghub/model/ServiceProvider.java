@@ -39,4 +39,8 @@ public class ServiceProvider {
     @Enumerated(EnumType.STRING)
     private ServiceProviderType serviceProviderType;
 
+    @OneToOne
+    @JoinColumn(name = "profilePictureId")
+    private ServiceProviderProfilePicture profilePictureId;
+
 }

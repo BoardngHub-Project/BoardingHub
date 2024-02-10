@@ -2,24 +2,27 @@ package com.groupi.boardinghub.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
-public class Location {
+@Table(name="Reviews")
+public class Review {
+
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2",strategy="uuid2")
-    private String Id;
-    private String longitude;
-    private String latitude;
-
-    @OneToOne(mappedBy = "locationId", cascade = CascadeType.ALL)
-    private BoardingPlaceGig boardingPlaceGig;
+    @Column(name = "Review_Title")
+    private String reviewId;
+    @Column(name = "Title")
+    private String title;
+    @Column(name = "Review_Body")
+    private String body;
+    @ManyToOne
+    @JoinColumn(name="BoardingPlaceGigId")
+    private BoardingPlaceGig gigId;
 }

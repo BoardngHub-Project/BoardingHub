@@ -1,5 +1,6 @@
 package com.groupi.boardinghub.dto;
 
+import com.groupi.boardinghub.model.Location;
 import lombok.*;
 
 @Getter
@@ -14,6 +15,8 @@ private String gigTitle;
 private String description;
 private double pricePerRoom;
 private int noOfAvailableRooms;
+private String longitude;
+private String latitude;
 
 
 }

@@ -7,19 +7,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Data
 @Entity
-public class Location {
+public class ServiceProviderProfilePicture {
+
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2",strategy="uuid2")
-    private String Id;
-    private String longitude;
-    private String latitude;
+    @Column(name = "id")
+    private String id;
 
-    @OneToOne(mappedBy = "locationId", cascade = CascadeType.ALL)
-    private BoardingPlaceGig boardingPlaceGig;
+    @Column(name = "email")
+    private String email;
+
+    @Column(name="profile_picture")
+    private String profilePicture;
+
+    @OneToOne(mappedBy = "profilePictureId")
+    private ServiceProvider serviceProvider;
 }

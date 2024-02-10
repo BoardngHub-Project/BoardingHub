@@ -24,4 +24,6 @@ public class ServiceProviderRegistrationController {
         ServiceProviderRegistrationDto serviceProviderRegistrationDto = serviceProviderRegistrationService.getServiceProvider(id);
         return new ResponseEntity<>(serviceProviderRegistrationDto,HttpStatus.OK);
     }
+
+
 }
