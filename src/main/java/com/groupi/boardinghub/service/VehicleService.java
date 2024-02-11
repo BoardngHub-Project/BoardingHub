@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class VehicleService {
@@ -67,15 +68,15 @@ public class VehicleService {
         vehicleRepository.delete(vehicle);
     }
 
+    public List<Vehicle> getAllVehicles() {
+        return vehicleRepository.findAll();
+    }
 
-    //find by Type
-//    public List<Vehicle> findVehiclesByType(String vehicleType) {
-//
-//        return VehicleRepository.findByVehicleType(vehicleType);
-//
-//    }
+    public List<Vehicle> findVehiclesByType(String type) {
+        return vehicleRepository.findAll().stream()
+                .filter(vehicle -> vehicle.getVehicleType().equals(type))
+                .collect(Collectors.toList());
 
-
-
+    }
 
 }

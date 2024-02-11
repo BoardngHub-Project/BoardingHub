@@ -25,4 +25,8 @@ public class Review {
     @ManyToOne
     @JoinColumn(name="BoardingPlaceGigId")
     private BoardingPlaceGig gigId;
+
+//    @ManyToOne
+//    @JoinColumn(name = "transportationId")
+//    private TransportationHire transportationHire;
 }

@@ -25,5 +25,12 @@ public class ServiceProviderRegistrationController {
         return new ResponseEntity<>(serviceProviderRegistrationDto,HttpStatus.OK);
     }
 
+    @GetMapping("/{serviceProviderType}")
+    public ResponseEntity<ServiceProviderRegistrationDto> getServiceProviderByType(@PathVariable(name = "serviceProviderType") String serviceProviderType){
+        ServiceProviderRegistrationDto serviceProviderRegistrationDto = serviceProviderRegistrationService.getServiceProvider(serviceProviderType);
+        return new ResponseEntity<>(serviceProviderRegistrationDto,HttpStatus.OK);
+
+    }
+
 
 }
