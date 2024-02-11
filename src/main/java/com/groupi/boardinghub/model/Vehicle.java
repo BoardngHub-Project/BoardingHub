@@ -21,7 +21,7 @@ public class Vehicle {
     private String vehicleId;
 
     @Column(name = "pricePerDay")
-    private  Double pricePerDay;
+    private  double pricePerDay;
 
     @Column(name = "availability")
     private String availability;

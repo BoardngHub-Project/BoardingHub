@@ -13,7 +13,7 @@ public class VehicleDTO {
 
 
 //    private String vehicleId;
-    private  Double pricePerDay;
+    private  double pricePerDay;
     private String availability;
     private String vehicleType;
     private String vehicleMake;
