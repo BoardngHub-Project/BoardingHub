@@ -3,7 +3,6 @@ package com.groupi.boardinghub.service;
 import com.groupi.boardinghub.dto.LogInDTO;
 import com.groupi.boardinghub.model.ServiceProvider;
 import com.groupi.boardinghub.model.User;
-import com.groupi.boardinghub.model.enums.ServiceProviderType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,12 +20,18 @@ public class LoginService {
             return "Account not found";
         }else if(passwordEncoder.matches(loginDto.getPassword(),user.getPassword())) {
             return "Logged in Successfully!...";
+//            if(passwordEncoder.matches(loginDto.getPassword(),user.getPassword())){return "User Logged in Successfully!...";}
+//            else{
+//                return "Service Provider Logged in Successfully!...";
+//            }
         }else{
             return "Incorrect Credentials...";
         }
     }
 }
 
+// && serviceProvider==null
+//|| passwordEncoder.matches(loginDto.getPassword(),serviceProvider.getPassword())
  //&& serviceProvider.getServiceProviderType()== ServiceProviderType.BOARDING_PLACE
 // && serviceProvider.getServiceProviderType()== ServiceProviderType.MEAL_PROVIDER
 // && serviceProvider.getServiceProviderType()== ServiceProviderType.TRANSPORT_PROVIDER
