@@ -7,10 +7,7 @@ import java.util.List;
 
 public interface VehicleRepository extends JpaRepository<Vehicle , String> {
 
-//    List<Vehicle> findByVehicleType(String vehicleType);
-//}
 
 
-//public interface VehicleRepository extends ServiceProviderRepository {
-//
+
 }

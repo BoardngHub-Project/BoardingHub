@@ -6,9 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import java.util.UUID;
+
 
 @Getter
 @Setter
@@ -18,16 +18,23 @@ import java.util.UUID;
 @Table(name="transportationHire")
 public class TransportationHire {
 
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "uuid2")
+//    @GenericGenerator( name = "uuid2" , strategy = "org.hibernate.id.UUIDGenerator")
+    @GenericGenerator(name = "uuid2",strategy="uuid2")
 
+    private String transportationId;
 
-    private Long id;
     private String vehicleType;
     private String driverName;
     private String vehicleMake;
     private double pricePerKm;
-    private String imageUrl;
+//
+//    @OneToMany(mappedBy = "transportationId")
+//    private List<Review> reviews;
+
+//    private String imageUrl;
 
 }
 
